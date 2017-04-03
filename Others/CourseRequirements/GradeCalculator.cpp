@@ -1,7 +1,8 @@
 #include "GradeCalculator.h"
-#define _CRT_SECURE_NO_WARNINGS
+
 #include <cstring>
 #include <iostream>
+#include <algorithm>
 
 #define SEMINAR_REQUIERMENTS \
         "1. Two mid-exams, coefficent 2.5\n" \
@@ -50,7 +51,7 @@ const Grade* GradeCalculator::GetGrades() const
     return grades;
 }
 
-size_t GradeCalculator::GradeCalculator::GetNumberOfGrades() const
+size_t GradeCalculator::GetNumberOfGrades() const
 {
     return numberOfGrades;
 }
@@ -123,11 +124,13 @@ void GradeCalculator::PrintRequierements() const
     {
         case ExercisesType::Seminar:
         {
+            std::cout << "Seminar requierments:\n";
             std::cout << SEMINAR_REQUIERMENTS;
             break;
         }
         case ExercisesType::Praktikum:
         {
+           std::cout << "Praktikum requierments:\n";
            std::cout << PraktikumRequirements;
            break;
         }
@@ -148,13 +151,16 @@ void GradeCalculator::PrintGrade() const
         {
             size_t sumOfGrades = 0;
             size_t divisor = 0;
+            std::cout << studentName << ", you have the following grades:\n";
             for(size_t i = 0; i < numberOfGrades; i++)
             {
+                std::cout << "  grade[" << i << "]: " << (int)grades[i].value << ", ";
                 switch(grades[i].ePriority)
                 {
                     case GradePriority::Low:
                     default:
                     {
+                        std::cout << "low priority";
                         sumOfGrades += grades[i].value * 10;
                         divisor += 10;
                         break;
@@ -162,13 +168,16 @@ void GradeCalculator::PrintGrade() const
                     
                     case GradePriority::High:
                     {
+                        std::cout << "high priority";
                         sumOfGrades += grades[i].value * 25;
                         divisor += 25;
                         break;
                     }
                 }
-                sumOfGrades += grades[i].value; 
+                std::cout << std::endl;
             }
+            divisor = std::max(divisor, 1U); // Avoid division by zero
+            std::cout << "Your grade is: " << sumOfGrades / divisor << std::endl;
             break;
         }
         default:
@@ -189,5 +198,3 @@ void GradeCalculator::AddGrade(const Grade& newGrade)
     grades[numberOfGrades] = newGrade;
     numberOfGrades++;
 }
-
-

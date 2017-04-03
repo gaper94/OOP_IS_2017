@@ -1,6 +1,7 @@
 #ifndef GRADE_CALCULATOR_H
 #define GRADE_CALCULATOR_H
 
+#define _CRT_SECURE_NO_WARNINGS // Compiler error 4996
 #include <stddef.h> // size_t
 
 enum class ExercisesType
@@ -11,8 +12,8 @@ enum class ExercisesType
 
 enum class GradePriority
 {
-    Low, // Homework
-    High, // Midterm exam
+    Low, // Homeworks
+    High, // Midterm exams
 };
 
 struct Grade
@@ -60,4 +61,5 @@ private:
     size_t numberOfGrades;
     size_t gradesCapacity;
 };
+
 #endif // GRADE_CALCULATOR_H
