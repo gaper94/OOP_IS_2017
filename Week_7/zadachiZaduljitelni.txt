@@ -1,0 +1,40 @@
+Да се напише клас ComplexNumber, представляващ комплексно число. 
+Класът има две полета, представляващи съответно реалната и имагинерната му част.
+За този клас да се имплементират подходящи конструктори, както и да се предефинират следните оператори:
+
+- ComplexNumber operator + (const ComplexNumber& other);
+- ComplexNumber& operator += (const ComplexNumber& other);
+
+- ComplexNumber operator - (const ComplexNumber& other);
+- ComplexNumber& operator -= (const ComplexNumber& other);
+
+- ComplexNumber operator * (const ComplexNumber& other);
+- ComplexNumber& operator *= (const ComplexNumber& other);
+
+- ComplexNumber operator / (const ComplexNumber& other);
+- ComplexNumber& operator /= (const ComplexNumber& other);
+
+- ComplexNumber operator ^ (int powrer); //връща числото, повдигнато на степен power
+
+//операторите ++ и -- да увеличават или намалят с 1 както реалната, така и имагинерната част на числото
+- ComplexNumber& operator ++();
+- ComplexNumber operator ++(int);
+
+- ComplexNumber& operator --();
+- ComplexNumber operator --(int);
+
+-bool operator == (const ComplexNumber& other);
+-bool operator != (const ComplexNumber& other);
+
+//операторите < и > да сравняват модулите на двете числа
+-bool operator < (const ComplexNumber& other);
+-bool operator > (const ComplexNumber& other);
+
+- operator bool(); //връща булевата интерпретация на числото – false, ако то е 0 + 0i, true – иначе
+
+Да се определи кои са const методите и те да се декларират и дефинират правилно като такива.
+
+Да се предефинират операторите за вход и изход << и >> за обекти от този клас :
+
+friend std::ostream& operator << (std::ostream& os, const ComplexNumber& number);
+friend std::istream& operator >> (std::istream& os, ComplexNumber& number);
