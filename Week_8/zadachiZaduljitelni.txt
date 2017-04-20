@@ -1,0 +1,35 @@
+1.Да се напише шаблонна функция с един шаблонен тип, която по дадени два указателя от този тип – source и destination и 
+цяло число – размерът на source, копира source в destination.
+Функцията работи с динамично заделени масиви.
+
+2. Да се напише шаблонна функция с един шаблонен тип, която получава указател към масив от дадения тип и цяло число –
+размерът на масива и връща най-големият елемен от масива, като за целта се използва вече дефинираната шаблонна функция :
+
+template<typename T>
+T max(T lhs, T rhs)
+{
+    return lhs > rhs ? lhs : rhs;
+} 
+
+Какви са изискванията към шаблонния тип?
+
+3. Да се напише шаблонен клас, представляващ масив с фиксиран размер, подобен на std::array
+( http://en.cppreference.com/w/cpp/container/array ).
+Този клас има два шаблонни параметъра – тип на елементите на масива и цяло неотрицателно число – фиксираният размер на масива.
+За класа да се дефинира “голямата четворка” , както и оператор [ ] .
+Класът има следната декларация :
+
+template<typename T, size_t N>
+class FixedSizeArray
+{
+public:
+    FixedSizeArray();
+    FixedSizeArray(const FixedSizeArray& other);
+    FixedSizeArray& operator = (const FixedSizeArray& other);
+    ~FixedSizeArray();
+
+    T& operator [] (size_t index);
+private:
+    T* elements;
+};
+
