@@ -130,9 +130,12 @@ bool ComplexNumber::operator>(const ComplexNumber& rhs)
     double otherModule = sqrt(pow(realPart, 2) + pow(imaginaryPart, 2));
     return thisModule > otherModule;
 }
+
 bool ComplexNumber::operator<(const ComplexNumber& rhs)
 {
-    return !(*this > rhs);
+    double thisModule = sqrt(pow(realPart, 2) + pow(imaginaryPart, 2));
+    double otherModule = sqrt(pow(realPart, 2) + pow(imaginaryPart, 2));
+    return thisModule < otherModule;
 }
 
 ComplexNumber::operator bool() const
