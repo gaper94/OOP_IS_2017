@@ -28,6 +28,149 @@ public:
 // 5. Виртуални таблици и динамично свързване (dynamic binding)
 // 6. Множествено наследяване - кога трябва и не трябва да го ползваме.
 //    Виртуално наследяване и какви проблеми решава
+
+class Base1
+{
+public:
+    Base1 (int x)
+    {
+        value = x;
+    }
+      
+    int getData () const
+    {
+        return value;
+    }
+protected:
+    int value;
+};
+
+class Base2
+{
+public:
+    Base2 (char c)
+    { 
+        letter = c;
+    }
+
+    char getData() const
+    {
+        return letter;
+    }
+protected:
+    char letter;
+};
+
+class Derived: public Base1, public Base2
+{
+public:
+    Derived (int i, char c, float f);
+    float getReal () const;
+
+private:
+    float real;
+};
+
+Derived::Derived(int i, char c, float f) : Base1 (i), Base2 (c)
+{
+    real = f;
+}
+
+float Derived::getReal () const
+{
+    return real;
+}
+
+//Diamond problem
+class A
+{
+public:
+    A(int x)
+    {
+        a = x;
+    }
+ 
+    int f() const
+    {
+        return x;
+    }
+    
+    void print() const
+    {
+        cout << "A:: a " << a << endl;
+    }
+    
+protected:
+    int a;
+};
+ 
+class B: public A
+{
+public:
+    B(int x, int y): A(x)
+    {
+        b = y;
+    }
+    
+    int f() const
+    {
+        return b;
+    }
+    
+    void print() const
+    {
+        A::print();
+        cout << "B:: b " << b << endl;
+    }
+
+protected:
+    int b;
+};
+
+class C: public A
+{
+public:
+    C(int x, int y): A(x)
+    {
+        c = y;
+    }
+    
+    int f() const
+    {
+        return c;
+    }
+    
+    void print() const
+    {
+        A::print();
+        cout << "C:: c " << c << endl;
+    }
+protected:
+    int c;
+};
+
+class D: public B, public C
+{
+public:
+    D(int x, int y, int z, int t): B(x, y), C(z, t)
+    {
+    }
+    
+    //D(int x, int y, int z): B(x, y), C(x, z)
+    //{
+    //}
+       
+    // D(int x, int y, int z, int t): A(x), B(x, y), C(z, t))
+    //{
+    //}
+    
+    void print() const
+    {
+        B::print();
+        C::print();
+    }
+};
+
 // 7. Различни типове преобразувания
 //   7.1 Преобразувания в С стил
 //   7.2 static_cast<>()
