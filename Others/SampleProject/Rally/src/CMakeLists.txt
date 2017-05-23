@@ -18,3 +18,12 @@ set(LINKED_LIBRARIES "") # Add required libraries
 
 add_executable(${ProjectName} ${RALLY_CPPS})
 target_link_libraries(${ProjectName} ${LINKED_LIBRARIES})
+
+# Add unit test if required
+set(ENABLE_TEST ${tests})
+IF("${ENABLE_TEST}" STREQUAL "true")
+    message("-- Tests enabled")
+
+else()
+    message("\nRun 'cmake -D tests=true' to enable tesing\n")
+ENDIF()

@@ -1,11 +1,12 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <stddef.h>
+#include <utility>
+
 namespace containers
 {
 
-#include <stddef.h>
-#include <utility>
 using size_type = size_t;
 
 template<typename T>

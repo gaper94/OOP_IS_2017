@@ -1,6 +1,10 @@
 #ifndef STRING_H
 #define STRING_H
 
+#include <stddef.h>
+#include <cstring>
+#include <utility>
+
 namespace containers
 {
 
@@ -11,9 +15,9 @@ class basic_string
 {
 public:
 	basic_string();
-	basic_string(const CharT* s);
+    basic_string(const CharT* s);
 	basic_string(const basic_string& other);
-	basic_string(basic_string&& other);
+    basic_string(basic_string&& other);
 	~basic_string();
 	//
 	basic_string& operator=(basic_string rhs);
@@ -33,7 +37,6 @@ private:
 #include "String.hpp"
 
 using String = basic_string<char>;
-using WString = basic_string<wchar_t>;
 
 }
 #endif // STRING_H
