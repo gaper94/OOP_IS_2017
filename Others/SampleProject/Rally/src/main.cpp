@@ -1,5 +1,5 @@
-#include "common/Vector.h"
 #include <utility>
+#include "common/Vector.h"
 
 int main()
 {
